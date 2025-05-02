@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import Skeleton from './Skeleton';
 
 export function ItemListContainer({ items }) {
     const { categoria } = useParams();
@@ -8,7 +9,9 @@ export function ItemListContainer({ items }) {
         ?.platos;
 
     if (!platosCategoria) {
-        return <p>Cargando plato...</p>;
+        return (
+            <Skeleton count={8} variants={[{ width: '25%', height: '32px' }]} marginTop={15} />
+        )
     }
 
     return (

@@ -7,6 +7,7 @@ import './style.css';
 import { NavBar } from './componentes/NavBar.jsx';
 import { BotonPrincipal } from './componentes/BotonPrincipal.jsx';
 import { Footer } from './componentes/Footer.jsx';
+import FloatingCart from './componentes/FloatingCart.jsx';
 
 function App() {
   const api = useApi();
@@ -21,6 +22,7 @@ function App() {
           <Route path="/categoria/:categoria" element={<ItemListContainer items={api} />} />
           <Route path="/detail/:nombre" element={<ItemDetailContainer items={api} />} />
         </Routes>
+        <FloatingCart itemCount={3} onClick={()=> alert("ABRIR CARRITO")}/>
         <Footer/>
       </div>
     </Router>

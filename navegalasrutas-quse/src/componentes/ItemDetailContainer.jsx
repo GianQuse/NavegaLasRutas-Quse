@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from './Skeleton';
 import Contador from './Contador';
 
 export function ItemDetailContainer({ items }) {
@@ -11,7 +12,14 @@ export function ItemDetailContainer({ items }) {
         .find(plato => plato.nombre === nombre);
 
     if (!plato) {
-        return <p>Cargando plato...</p>;
+        return (
+            <Skeleton
+                count={2}
+                variants={[{ width: '85%', maxWidth: '370px', height: '495px' },
+                { maxWidth: '120px', height: '32px', margin: '10px 0 0 0' }]}
+                marginTop={20}
+            />
+        )
     }
 
     return (
