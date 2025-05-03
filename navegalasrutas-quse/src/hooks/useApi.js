@@ -1,20 +1,29 @@
-import { useEffect, useState } from "react";
 import { menu } from "../assets/data.js";
 
-export function useApi () {
-    const [items, setItems] = useState([]);
+export function useApiMenu() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(menu);
+    }, 1000);
+  });
+}
 
-    const cargaMenu = () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(menu);
-        }, 3000);
-      });
-    };
+export function useApiList(categoria) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const listaPlatos = menu.find(item => item.tipo === categoria)?.platos;
+      resolve(listaPlatos);
+    }, 1000);
+  });
+}
 
-    useEffect(() => {
-        cargaMenu().then((detalles) => setItems(detalles));
-      }, []);
-
-    return items;
+export function useApiDetail(nombre) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const plato = menu
+        .flatMap(item => item.platos)
+        .find(plato => plato.nombre === nombre);
+      resolve(plato);
+    }, 1000);
+  });
 }

@@ -6,16 +6,19 @@ const Skeleton = ({ count = 5, variants = [], marginTop = 0 }) => {
         backgroundImage: 'linear-gradient(90deg, #eee, #f5f5f5, #eee)',
         backgroundSize: '200px 100%',
         backgroundRepeat: 'no-repeat',
-        borderRadius: '12px',
         display: 'inline-block',
         lineHeight: 1,
-        width: '80%',
-        maxWidth: '400px',
-        height: '60px',
-        marginBottom: '20px',
         boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
         animation: 'skeleton-animation 1.5s ease-in-out infinite',
     };
+
+    /*CONFIGURABLES RECOMENDADOS (variants)
+        width: ' ',
+        maxWidth: ' ',
+        height: ' ',
+        borderRadius: ' ',
+        marginBottom: ' ',
+    */
 
     const skeletons = Array.from({ length: count }).map((_, i) => {
         const variantStyle = variants[i] || {};
