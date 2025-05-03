@@ -1,22 +1,43 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useApiMenu } from '../hooks/useApi';
 import Skeleton from './Skeleton';
 
-export function ItemMenuContainer({ items }) {
-  const isLoading = !items || items.length === 0;
+export function ItemMenuContainer() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const skeletonVariants = {
+    width: '85%',
+    maxWidth: '400px',
+    height: '100px',
+    borderRadius: '30px',
+    marginBottom: '20px',
+  }
+
+  useEffect(() => {
+    useApiMenu()
+      .then((data) => {
+        setItems(data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <div className="menu-container">
+    <>
       <h2 className="menu-title">Menu</h2>
 
-      {isLoading ? (
+      {loading ? (
         <Skeleton
           count={5}
           variants={[
-            { height: '100px', borderRadius: '30px' },
-            { height: '100px', borderRadius: '30px' },
-            { height: '100px', borderRadius: '30px' },
-            { height: '100px', borderRadius: '30px' },
-            { height: '100px', borderRadius: '30px' },
+            skeletonVariants,
+            skeletonVariants,
+            skeletonVariants,
+            skeletonVariants,
+            skeletonVariants,
           ]}
         />
       ) : (
@@ -29,7 +50,7 @@ export function ItemMenuContainer({ items }) {
           </div>
         ))
       )}
-    </div>
+    </>
   );
 }
 

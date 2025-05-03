@@ -157,10 +157,6 @@
   font-weight: bold;
 }
 
-.menu-container {
-  min-height: 50vh;
-}
-
 .menu-principal-card {
   position: relative;
   width: 85%;
