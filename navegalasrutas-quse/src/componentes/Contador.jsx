@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { useContext } from 'react';
+import { cartContext } from './Cart/CartContext';
 import cartIcon from '/imagenes/carrito-de-compras.png';
 
-function Counter() {
+function Counter({product}) {
+  const {onAdd} = useContext(cartContext);
+
   const [count, setCount] = useState(1);
 
   const decrease = () => {
@@ -14,6 +18,7 @@ function Counter() {
 
   const handleAddToCart = () => {
     alert(`Agregaste ${count} producto(s) al carrito 🛒`);
+    onAdd(product, count);
   };
 
   return (

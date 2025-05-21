@@ -41,7 +41,7 @@ export function ItemDetailContainer() {
                             <p key={index} className="plato-precio">${precio}</p>
                         ))}
                     </div>
-                    <Contador />
+                    <Contador product={items}/>
                 </div>
                 <button className='plato-button' onClick={() => navigate(-1)}>Volver atrás</button>
             </div>

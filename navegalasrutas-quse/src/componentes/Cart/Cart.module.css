@@ -1,0 +1,128 @@
+.cartContainer {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  padding: 16px;
+  margin: 12px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.cartItem:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cartItemImg {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+
+.cartItemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cartItemNombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #333;
+}
+
+.cartItemPrecio {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2e7d32;
+  margin-bottom: 4px;
+}
+
+.cartItemCantidad {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.clearCartButton {
+  width: 20%;
+  margin-top: 10px;
+  padding: 12px 20px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clearCartButton:hover {
+  background-color: #b71c1c;
+}
+
+.emptyCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.emptyCart h3 {
+  font-size: 3rem;
+  color: #d32f2f;
+  margin-bottom: 12px;
+}
+
+.emptyCart p {
+  font-size: 2rem;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .cartItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cartItemImg {
+    width: 100%;
+    height: auto;
+    margin: 0 0 12px 0;
+  }
+
+  .cartItemInfo {
+    align-items: flex-start;
+  }
+
+  .clearCartButton {
+  width: 35%;
+}
+}
