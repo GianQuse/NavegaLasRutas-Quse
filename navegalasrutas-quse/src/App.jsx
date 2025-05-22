@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ItemMenuContainer />} />
             <Route path="/categoria/:categoria" element={<ItemListContainer />} />
-            <Route path="/detail/:nombre" element={<ItemDetailContainer />} />
+            <Route path="/detail/:ID" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
           <FloatingCart/>

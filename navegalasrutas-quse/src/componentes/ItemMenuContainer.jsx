@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useApiMenu } from '../hooks/useApi';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import Skeleton from './Skeleton';
 
 export function ItemMenuContainer() {
@@ -16,13 +16,14 @@ export function ItemMenuContainer() {
   }
 
   useEffect(() => {
-    useApiMenu()
-      .then((data) => {
-        setItems(data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const db = getFirestore()
+    const menuCollection = collection(db, 'menu');
+    getDocs(menuCollection).then((response) => {
+      const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
+      setItems(responseMapped);
+    }).finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   return (
