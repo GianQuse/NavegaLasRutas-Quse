@@ -1,29 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { useApiDetail } from '../hooks/useApi';
 import Skeleton from './Skeleton';
 import Contador from './Contador';
 
 export function ItemDetailContainer() {
     const { ID } = useParams();
     const navigate = useNavigate();
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const db = getFirestore()
-        const menuCollection = collection(db, 'menu');
-        getDocs(menuCollection).then((response) => {
-            const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
-            const plato = responseMapped
-                .flatMap(item => item.platos)
-                .find(plato => plato.ID === ID);
-            setItems(plato);
-        }).finally(() => {
-            setLoading(false);
-        });
-    }, []);
+    const { items, loading } = useApiDetail(ID);
 
     return (
         loading ? (

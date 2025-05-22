@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { useApiMenu } from '../hooks/useApi';
 import Skeleton from './Skeleton';
 
 export function ItemMenuContainer() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { items, loading } = useApiMenu();
 
   const skeletonVariants = {
     width: '85%',
@@ -15,17 +13,6 @@ export function ItemMenuContainer() {
     marginBottom: '20px',
   }
 
-  useEffect(() => {
-    const db = getFirestore()
-    const menuCollection = collection(db, 'menu');
-    getDocs(menuCollection).then((response) => {
-      const responseMapped = response.docs.map((doc) => ({ ...doc.data() }));
-      setItems(responseMapped);
-    }).finally(() => {
-      setLoading(false);
-    });
-  }, []);
-
   return (
     <>
       <h2 className="menu-title">Menu</h2>
@@ -33,13 +20,7 @@ export function ItemMenuContainer() {
       {loading ? (
         <Skeleton
           count={5}
-          variants={[
-            skeletonVariants,
-            skeletonVariants,
-            skeletonVariants,
-            skeletonVariants,
-            skeletonVariants,
-          ]}
+          variants={Array(5).fill(skeletonVariants)}
         />
       ) : (
         items.map((item, index) => (
