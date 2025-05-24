@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { cartContext } from './Cart/CartContext';
 import cartIcon from '/imagenes/carrito-de-compras.png';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-function Counter({product}) {
-  const {onAdd} = useContext(cartContext);
+function Counter({ product }) {
+  const MySwal = withReactContent(Swal)
+
+  const { onAdd } = useContext(cartContext);
 
   const [count, setCount] = useState(1);
 
@@ -17,8 +20,15 @@ function Counter({product}) {
   };
 
   const handleAddToCart = () => {
-    alert(`Agregaste ${count} producto(s) al carrito 🛒`);
+    MySwal.fire({
+      title: "Producto agregado al carrito",
+      icon: "success",
+      timer: 1500,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    });
     onAdd(product, count);
+    setCount(1);
   };
 
   return (

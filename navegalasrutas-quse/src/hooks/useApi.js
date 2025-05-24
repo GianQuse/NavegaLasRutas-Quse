@@ -57,6 +57,11 @@ export function useApiDetail(ID) {
             setItems(plato);
         }).finally(() => {
             setLoading(false);
+            window.scrollTo({
+                top: 160,
+                left: 0,
+                behavior: 'smooth'
+            });
         });
     }, []);
 

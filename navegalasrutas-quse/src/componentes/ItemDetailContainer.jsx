@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useApiDetail } from '../hooks/useApi';
 import Skeleton from './Skeleton';
-import Contador from './Contador';
+import Counter from './Contador';
 
 export function ItemDetailContainer() {
     const { ID } = useParams();
@@ -27,7 +27,7 @@ export function ItemDetailContainer() {
                         <h4 className="plato-descripcion">{items.descripcion}</h4>
                         <p className="plato-precio">${items.precio}</p>
                     </div>
-                    <Contador product={items} />
+                    <Counter product={items} />
                 </div>
                 <button className='plato-button' onClick={() => navigate(-1)}>Volver atrás</button>
             </div>

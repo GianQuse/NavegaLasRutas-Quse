@@ -1,13 +1,19 @@
 .cartContainer {
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 50vh;
+  margin-top: 10px;
 }
 
 .cartItem {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  width: 80%;
+  justify-content: space-between;
+  width: 70%;
+  /* Menor que el 100% */
+  max-width: 800px;
   padding: 16px;
   margin: 12px 0;
   border: 1px solid #e0e0e0;
@@ -27,13 +33,23 @@
   object-fit: cover;
   border-radius: 6px;
   margin-right: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cartItemContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  width: 100%;
 }
 
 .cartItemInfo {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
 
 .cartItemNombre {
@@ -53,6 +69,23 @@
 .cartItemCantidad {
   font-size: 0.95rem;
   color: #555;
+  font-weight: bold;
+}
+
+.removeFromCartButton {
+  margin-left: 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.removeFromCartButton:hover {
+  background-color: #c62828;
 }
 
 .clearCartButton {
@@ -93,11 +126,40 @@
   color: #555;
 }
 
+.cartTotalPrice {
+  margin-top: 10px;
+}
+
+.cartActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.checkoutButton {
+  padding: 12px 20px;
+  background-color: #1976d2; /* Azul Material */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkoutButton:hover {
+  background-color: #1565c0;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -105,24 +167,22 @@
 }
 
 
-/* Responsivo para pantallas pequeñas */
 @media (max-width: 600px) {
   .cartItem {
-    flex-direction: column;
-    align-items: flex-start;
+    width: 90%;
+    padding: 12px;
   }
 
-  .cartItemImg {
-    width: 100%;
-    height: auto;
-    margin: 0 0 12px 0;
+  .removeFromCartButton {
+    align-self: flex-end;
+    margin-left: auto;
+    padding: 6px 10px;
   }
 
-  .cartItemInfo {
-    align-items: flex-start;
+  .cartActions {
+    flex-direction: column-reverse;
+    gap: 12px;
+    width: 90%;
   }
 
-  .clearCartButton {
-  width: 35%;
-}
 }
